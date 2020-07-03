@@ -1,4 +1,4 @@
-// Type definitions for react-resize-detector 4.2
+// Type definitions for react-resize-detector 5.0.4
 // Project: https://github.com/maslianok/react-resize-detector
 // Definitions by: Matthew James <https://github.com/matthew-matvei>
 //                 James Greenleaf <https://github.com/aMoniker>
@@ -24,12 +24,12 @@ interface ReactResizeDetectorProps extends React.Props<ReactResizeDetector> {
     onResize?: (width: number, height: number) => void;
     /**
      * Trigger onResize on height change.
-     * Default: false
+     * Default: true
      */
     handleHeight?: boolean;
     /**
      * Trigger onResize on width change.
-     * Default: false
+     * Default: true
      */
     handleWidth?: boolean;
     /**
@@ -57,31 +57,13 @@ interface ReactResizeDetectorProps extends React.Props<ReactResizeDetector> {
      */
     refreshOptions?: { leading?: boolean; trailing?: boolean };
     /**
-     * A selector of an element to observe.
-     * You can use this property to attach resize-observer to any DOM element.
-     * Please refer to the querySelector docs.
+     * Use this prop to pass a reference to the element you want to attach resize handlers to.
+     * It must be an instance of React.useRef or React.createRef functions.
      * Default: undefined
      */
-    querySelector?: string;
-    /**
-     * Valid only for a callback-pattern.
-     * Ignored for other render types.
-     * Set resize-detector's node type.
-     * You can pass any valid React node: string with node's name or element.
-     * Can be useful when you need to handle table's or paragraph's resizes.
-     * Default: "div"
-     */
-    nodeType?: keyof React.ReactHTML; // will be passed to React.createElement()
-    /**
-     * A DOM element to observe.
-     * By default it's a parent element in relation to the ReactResizeDetector component.
-     * But you can pass any DOM element to observe.
-     * This property is omitted when you pass querySelector.
-     * Default: undefined
-     */
-    targetDomEl?: HTMLElement;
+    targetRef?: React.RefObject<Element | HTMLDocument>;
 
-    render?: (props: ReactResizeDetectorDimensions) => React.ReactNode;
+    children?: (props: ReactResizeDetectorDimensions) => React.ReactNode;
 }
 
 declare class ReactResizeDetector extends React.PureComponent<ReactResizeDetectorProps> {}
